@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Leo"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-12-04 05:21:37 PM"/>
+        <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA1OjIxOjM3IFBNOzU7MjczMg=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="timer" type="Integer" array="False" size=""/>
+            <assign variable="timer" expression="0"/>
+            <open expression="&quot;Flowtest.md&quot;" mode="write"/>
+            <while expression="timer &lt;= 10000">
+                <write expression="timer"/>
+                <assign variable="timer" expression="timer+1"/>
+            </while>
+            <close/>
+        </body>
+    </function>
+</flowgorithm>
