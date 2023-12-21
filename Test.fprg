@@ -4,28 +4,20 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-21 11:37:03 AM"/>
-        <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA5OzA0OjE0OjExIFBNOzI2MTg="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIxOzExOjM3OjAzIEFNOzMzOzI3NjI="/>
+        <attribute name="saved" value="2023-12-04 05:21:37 PM"/>
+        <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA1OjIxOjM3IFBNOzU7MjczMg=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <open expression="&quot;display.md&quot;" mode="write"/>
-            <declare name="displayArr" type="String" array="True" size="8"/>
-            <declare name="pixel, charColumn" type="String" array="False" size=""/>
-            <declare name="n, i" type="Integer" array="False" size=""/>
-            <assign variable="pixel" expression="&quot;*&quot;"/>
-            <assign variable="charColumn" expression="&quot;|&quot;"/>
-            <for variable="i" start="0" end="8" direction="inc" step="1">
-                <assign variable="charColumn" expression="charColumn &amp; pixel"/>
-            </for>
-            <for variable="n" start="0" end="7" direction="inc" step="1">
-                <assign variable="displayArr[n]" expression="charColumn"/>
-            </for>
-            <for variable="n" start="0" end="7" direction="inc" step="1">
-                <write expression="displayArr[n]"/>
-            </for>
+            <declare name="timer" type="Integer" array="False" size=""/>
+            <assign variable="timer" expression="0"/>
+            <open expression="&quot;Flowtest.md&quot;" mode="write"/>
+            <while expression="timer &lt;= 10000">
+                <write expression="timer"/>
+                <assign variable="timer" expression="timer+1"/>
+            </while>
             <close/>
         </body>
     </function>
