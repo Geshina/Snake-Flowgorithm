@@ -17,8 +17,8 @@ the graphics engine which renders out a user interface for the game
 spawn apples at random cordinates and gamesteps.
  - [x] function that returns int array with cordinates for apple
  - [ ] generate apples on every 8th step
- - [ ] check if snake cordinates == apples cordinates
- - [ ] keep track of score
+ - [x] check if snake cordinates == apples cordinates
+ - [x] keep track of score
 ## Controls
 continously accept user input and provides the direction for the snake to go in
  - [ ] function that returns int array with vectors for movement | ex. direction(0,-1) for going down
