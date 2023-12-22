@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 01:13:35 PM"/>
+        <attribute name="saved" value="2023-12-22 01:21:27 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzAxOjEzOjM1IFBNOzE0OzI3NzU="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzAxOjIxOjI3IFBNOzIzOzI3NzU="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -19,20 +19,21 @@
         <body>
             <declare name="n" type="Integer" array="False" size=""/>
             <declare name="emptyChar, snakeChar" type="String" array="False" size=""/>
-            <declare name="boardSize" type="Integer" array="False" size=""/>
+            <declare name="boardWidth, boardHeight" type="Integer" array="False" size=""/>
             <assign variable="emptyChar" expression="&quot; &quot;"/>
-            <assign variable="boardSize" expression="16"/>
-            <declare name="displayArr" type="String" array="True" size="boardSize"/>
+            <assign variable="boardHeight" expression="12"/>
+            <assign variable="boardWidth" expression="24"/>
+            <declare name="displayArr" type="String" array="True" size="boardWidth"/>
             <declare name="displayRow" type="String" array="False" size=""/>
             <assign variable="displayRow" expression="emptyChar"/>
-            <for variable="n" start="0" end="boardSize" direction="inc" step="1">
-                <assign variable="displayRow" expression="displayRow &amp; n"/>
+            <for variable="n" start="0" end="boardWidth" direction="inc" step="1">
+                <assign variable="displayRow" expression="displayRow &amp; emptyChar"/>
             </for>
-            <for variable="n" start="0" end="boardSize - 1" direction="inc" step="1">
+            <for variable="n" start="0" end="boardHeight - 1" direction="inc" step="1">
                 <assign variable="displayArr[n]" expression="displayRow"/>
             </for>
             <open expression="&quot;display.md&quot;" mode="write"/>
-            <for variable="n" start="0" end="boardSize - 1" direction="inc" step="1">
+            <for variable="n" start="0" end="boardHeight - 1" direction="inc" step="1">
                 <write expression="displayArr[n]"/>
             </for>
             <close/>

@@ -9,7 +9,8 @@ The classic snake game made in flowgorithm. Eat apples to get longer (max size =
 the graphics engine which renders out a user interface for the game
  - [x] line by line rendering
  - [x] standardized variables
- - [ ] board aspect ratio
+ - [x] board aspect ratio 12/24
+ - [ ] borders and UI
  - [ ] snake rendering
  - [ ] optimisation ?
 ## Entities
