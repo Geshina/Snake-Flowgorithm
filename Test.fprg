@@ -4,21 +4,32 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-21 12:02:24 PM"/>
+        <attribute name="saved" value="2023-12-22 02:54:26 pm"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
         <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIxOzEyOjAyOjI0IFBNOzY7MjcyNQ=="/>
+        <attribute name="edited" value="VmFsZW50aW5vO0RFU0tUT1AtOFNTRkVUMjsyMDIzLTEyLTIyOzAyOjU0OjI2IHBtOzc7MzQ3Nw=="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="timer" type="Integer" array="False" size=""/>
-            <assign variable="timer" expression="0"/>
-            <open expression="&quot;Flowtest.md&quot;" mode="write"/>
-            <while expression="timer &lt;= 10000">
-                <write expression="timer"/>
-                <assign variable="timer" expression="timer+1"/>
-            </while>
-            <close/>
+            <declare name="randPosition" type="Integer" array="True" size="2"/>
+            <declare name="randHeight" type="Integer" array="False" size=""/>
+            <assign variable="randHeight" expression="11"/>
+            <declare name="randWidth" type="Integer" array="False" size=""/>
+            <assign variable="randWidth" expression="22"/>
+            <call expression="randomCordArray(randPosition,randHeight,randWidth)"/>
+            <output expression="randPosition[0] &amp; &quot; &quot; &amp; randPosition[1]" newline="True"/>
+        </body>
+    </function>
+    <function name="randomCordArray" type="None" variable="">
+        <parameters>
+            <parameter name="randomPosition" type="Integer" array="True"/>
+            <parameter name="boardHeight" type="Integer" array="False"/>
+            <parameter name="boardWidth" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <assign variable="randomPosition[0]" expression="random(boardHeight)"/>
+            <assign variable="randomPosition[1]" expression="random(boardWidth)"/>
         </body>
     </function>
 </flowgorithm>
