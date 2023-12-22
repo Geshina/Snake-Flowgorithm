@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 02:26:53 PM"/>
+        <attribute name="saved" value="2023-12-22 05:25:37 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzAyOjI2OjUzIFBNOzQ3OzI3ODY="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzA1OjI1OjM3IFBNOzU4OzI3OTI="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -14,40 +14,30 @@
             <declare name="boardHeight, boardWidth" type="Integer" array="False" size=""/>
             <assign variable="boardHeight" expression="12"/>
             <assign variable="boardWidth" expression="24"/>
-            <call expression="render(boardHeight,boardWidth)"/>
+            <declare name="border" type="String" array="False" size=""/>
+            <assign variable="border" expression="makeBorder(boardWidth)"/>
+            <call expression="render(boardHeight,boardWidth,border)"/>
         </body>
     </function>
-    <function name="borderHorizontal" type="String" variable="borderHorizontal">
+    <function name="makeBorder" type="String" variable="border">
         <parameters>
             <parameter name="boardWidth" type="Integer" array="False"/>
         </parameters>
         <body>
-            <declare name="borderHorizontal" type="String" array="False" size=""/>
-            <assign variable="borderHorizontal" expression="&quot;+&quot;"/>
+            <declare name="border" type="String" array="False" size=""/>
             <declare name="i" type="Integer" array="False" size=""/>
+            <assign variable="border" expression="&quot;+&quot;"/>
             <for variable="i" start="0" end="boardWidth" direction="inc" step="1">
-                <assign variable="borderHorizontal" expression="boardWidth &amp; &quot;-&quot;"/>
+                <assign variable="border" expression="border &amp; &quot;-&quot;"/>
             </for>
-        </body>
-    </function>
-    <function name="borderVertical" type="String" variable="borderVertical">
-        <parameters>
-            <parameter name="boardHeight" type="Integer" array="False"/>
-        </parameters>
-        <body>
-            <declare name="borderVertical" type="String" array="False" size=""/>
-            <assign variable="borderVertical" expression="&quot;+&quot;"/>
-            <declare name="i" type="Integer" array="False" size=""/>
-            <for variable="i" start="0" end="boardHeight" direction="inc" step="1">
-                <assign variable="borderVertical" expression="borderVertical &amp; &quot;-&quot;"/>
-            </for>
-            <assign variable="borderVertical" expression="borderVertical &amp; &quot;+&quot;"/>
+            <assign variable="border" expression="border &amp; &quot;+&quot;"/>
         </body>
     </function>
     <function name="render" type="None" variable="">
         <parameters>
             <parameter name="boardHeight" type="Integer" array="False"/>
             <parameter name="boardWidth" type="Integer" array="False"/>
+            <parameter name="border" type="String" array="False"/>
         </parameters>
         <body>
             <declare name="n" type="Integer" array="False" size=""/>
@@ -55,22 +45,20 @@
             <assign variable="emptyChar" expression="&quot; &quot;"/>
             <declare name="displayArr" type="String" array="True" size="boardWidth"/>
             <declare name="displayRow" type="String" array="False" size=""/>
-            <assign variable="displayRow" expression="emptyChar"/>
+            <assign variable="displayRow" expression="&quot;|&quot;"/>
             <for variable="n" start="0" end="boardWidth" direction="inc" step="1">
                 <assign variable="displayRow" expression="displayRow &amp; emptyChar"/>
             </for>
+            <assign variable="displayRow" expression="displayRow &amp; &quot;|&quot;"/>
             <for variable="n" start="0" end="boardHeight - 1" direction="inc" step="1">
                 <assign variable="displayArr[n]" expression="displayRow"/>
             </for>
             <open expression="&quot;display.md&quot;" mode="write"/>
+            <write expression="border"/>
             <for variable="n" start="0" end="boardHeight - 1" direction="inc" step="1">
                 <write expression="displayArr[n]"/>
             </for>
-            <declare name="borderVertical, borderHorizontal" type="String" array="False" size=""/>
-            <assign variable="borderVertical" expression="borderVertical(boardHeight)"/>
-            <assign variable="borderHorizontal" expression="borderHorizontal(boardWidth)"/>
-            <write expression="borderVertical"/>
-            <write expression="borderHorizontal"/>
+            <write expression="border"/>
             <close/>
         </body>
     </function>
