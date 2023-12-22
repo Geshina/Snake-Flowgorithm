@@ -4,19 +4,25 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 05:25:37 PM"/>
+        <attribute name="saved" value="2023-12-22 08:50:54 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzA1OjI1OjM3IFBNOzU4OzI3OTI="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzA4OjUwOjU0IFBNOzcxOzI3ODc="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
+            <comment text="board init"/>
             <declare name="boardHeight, boardWidth" type="Integer" array="False" size=""/>
             <assign variable="boardHeight" expression="12"/>
             <assign variable="boardWidth" expression="24"/>
+            <comment text="border"/>
             <declare name="border" type="String" array="False" size=""/>
             <assign variable="border" expression="makeBorder(boardWidth)"/>
-            <call expression="render(boardHeight,boardWidth,border)"/>
+            <comment text="snake"/>
+            <declare name="snakeCords" type="Integer" array="True" size="2"/>
+            <assign variable="snakeCords[0]" expression="8"/>
+            <assign variable="snakeCords[1]" expression="8"/>
+            <call expression="render(boardHeight,boardWidth,border,snakeCords)"/>
         </body>
     </function>
     <function name="makeBorder" type="String" variable="border">
@@ -38,6 +44,7 @@
             <parameter name="boardHeight" type="Integer" array="False"/>
             <parameter name="boardWidth" type="Integer" array="False"/>
             <parameter name="border" type="String" array="False"/>
+            <parameter name="snakeCords" type="Integer" array="True"/>
         </parameters>
         <body>
             <declare name="n" type="Integer" array="False" size=""/>
@@ -46,7 +53,13 @@
             <declare name="displayArr" type="String" array="True" size="boardWidth"/>
             <declare name="displayRow" type="String" array="False" size=""/>
             <assign variable="displayRow" expression="&quot;|&quot;"/>
-            <for variable="n" start="0" end="boardWidth" direction="inc" step="1">
+            <for variable="n" start="0" end="boardWidth" direction="inc" step="1"/>
+            <comment text=""/>
+            <for variable="n" start="0" end="snakeCords[0] - 1" direction="inc" step="1">
+                <assign variable="displayRow" expression="displayRow &amp; emptyChar"/>
+            </for>
+            <assign variable="displayRow" expression="displayRow &amp; &quot;x&quot;"/>
+            <for variable="n" start="snakeCords[0] + 1" end="boardWidth" direction="inc" step="1">
                 <assign variable="displayRow" expression="displayRow &amp; emptyChar"/>
             </for>
             <assign variable="displayRow" expression="displayRow &amp; &quot;|&quot;"/>
