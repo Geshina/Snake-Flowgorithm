@@ -4,21 +4,54 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 02:54:26 pm"/>
+        <attribute name="saved" value="2023-12-22 05:16:15 pm"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
         <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIxOzEyOjAyOjI0IFBNOzY7MjcyNQ=="/>
-        <attribute name="edited" value="VmFsZW50aW5vO0RFU0tUT1AtOFNTRkVUMjsyMDIzLTEyLTIyOzAyOjU0OjI2IHBtOzc7MzQ3Nw=="/>
+        <attribute name="edited" value="VmFsZW50aW5vO0RFU0tUT1AtOFNTRkVUMjsyMDIzLTEyLTIyOzA1OjE2OjE1IHBtOzExOzM1MTk="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="randPosition" type="Integer" array="True" size="2"/>
+            <declare name="randPosition, snakeHeadPosition" type="Integer" array="True" size="2"/>
             <declare name="randHeight" type="Integer" array="False" size=""/>
             <assign variable="randHeight" expression="11"/>
             <declare name="randWidth" type="Integer" array="False" size=""/>
             <assign variable="randWidth" expression="22"/>
+            <declare name="Score" type="Integer" array="False" size=""/>
+            <assign variable="Score" expression="0"/>
             <call expression="randomCordArray(randPosition,randHeight,randWidth)"/>
-            <output expression="randPosition[0] &amp; &quot; &quot; &amp; randPosition[1]" newline="True"/>
+            <while expression="Score &lt; 10">
+                <output expression="randPosition[0] &amp; &quot; &quot; &amp; randPosition[1]" newline="True"/>
+                <output expression="&quot;Enter snake x position &quot;" newline="True"/>
+                <input variable="snakeHeadPosition[0]"/>
+                <output expression="&quot;Enter snake y position &quot;" newline="True"/>
+                <input variable="snakeHeadPosition[1]"/>
+                <if expression="isSamePosition(randPosition,snakeHeadPosition)">
+                    <then>
+                        <call expression="randomCordArray(randPosition,randHeight,randWidth)"/>
+                        <assign variable="Score" expression="Score+1"/>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;Score &quot; &amp; Score" newline="True"/>
+            </while>
+        </body>
+    </function>
+    <function name="isSamePosition" type="Boolean" variable="positionIsEqual">
+        <parameters>
+            <parameter name="snakePosition" type="Integer" array="True"/>
+            <parameter name="applePosition" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="positionIsEqual" type="Boolean" array="False" size=""/>
+            <if expression="snakePosition[0] == applePosition[0] &amp;&amp; snakePosition[1] == applePosition[1]">
+                <then>
+                    <assign variable="positionIsEqual" expression="true"/>
+                </then>
+                <else>
+                    <assign variable="positionIsEqual" expression="false"/>
+                </else>
+            </if>
         </body>
     </function>
     <function name="randomCordArray" type="None" variable="">
