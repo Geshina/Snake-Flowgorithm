@@ -6,7 +6,7 @@ The classic snake game made in flowgorithm. Eat apples to get longer (max size =
 - Leon - Controls / Leaderboard
 
 ## Rendering
-a set of functions that print out the full game board. The board is stored as a one-dimensional array
+a set of functions that print out the full game board. The board is stored as a string array acting as a 2d array
  - [x] line by line rendering
  - [x] board aspect ratio 12/24
  - [ ] snake rendering <<
