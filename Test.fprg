@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 08:50:54 PM"/>
+        <attribute name="saved" value="2023-12-22 10:07:11 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzA4OjUwOjU0IFBNOzcxOzI3ODc="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIyOzEwOjA3OjExIFBNOzcyOzI3NzY="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -22,6 +22,9 @@
             <declare name="snakeCords" type="Integer" array="True" size="2"/>
             <assign variable="snakeCords[0]" expression="8"/>
             <assign variable="snakeCords[1]" expression="8"/>
+            <comment text="2d array"/>
+            <declare name="matrix, item" type="Integer" array="True" size="2"/>
+            <assign variable="matrix[0]" expression="item[2]"/>
             <call expression="render(boardHeight,boardWidth,border,snakeCords)"/>
         </body>
     </function>
