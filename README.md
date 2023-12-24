@@ -12,7 +12,7 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] snake rendering
  - [x] paramterized
  - [x] more utility functions
- - [ ] borders and UI
+ - [x] borders and UI
  - [ ] optimisation ?
 ## Entities
 spawn apples at random cordinates and gamesteps.

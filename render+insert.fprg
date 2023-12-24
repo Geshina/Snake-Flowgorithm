@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-24 01:24:44 PM"/>
+        <attribute name="saved" value="2023-12-24 01:41:30 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI0OzAxOjI0OjQ0IFBNOzE3OTsyODM5"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI0OzAxOjQxOjMwIFBNOzIwMDsyODE4"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -17,7 +17,7 @@
             <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
             <comment text=""/>
             <declare name="arr" type="Integer" array="True" size="2"/>
-            <assign variable="arr[0]" expression="2"/>
+            <assign variable="arr[0]" expression="1"/>
             <assign variable="arr[1]" expression="0"/>
             <call expression="emptyBoard(gameBoard,boardDimensions)"/>
             <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
@@ -33,10 +33,11 @@
             <declare name="temp" type="String" array="False" size=""/>
             <declare name="i, n" type="Integer" array="False" size=""/>
             <for variable="i" start="0" end="boardDimensions[0]-1" direction="inc" step="1">
-                <assign variable="temp" expression="&quot;&quot;"/>
+                <assign variable="temp" expression="&quot;|&quot;"/>
                 <for variable="n" start="0" end="boardDimensions[1]" direction="inc" step="1">
                     <assign variable="temp" expression="temp &amp; &quot; &quot;"/>
                 </for>
+                <assign variable="temp" expression="temp &amp; &quot;|&quot;"/>
                 <assign variable="gameBoard[i]" expression="temp"/>
             </for>
         </body>
@@ -52,7 +53,7 @@
             <declare name="temp" type="String" array="False" size=""/>
             <assign variable="temp" expression="&quot;&quot;"/>
             <declare name="i" type="Integer" array="False" size=""/>
-            <for variable="i" start="0" end="boardDimensions[1]" direction="inc" step="1">
+            <for variable="i" start="0" end="boardDimensions[1]+2" direction="inc" step="1">
                 <if expression="i == cordinates[0]">
                     <then>
                         <assign variable="temp" expression="temp &amp; character"/>
@@ -71,11 +72,20 @@
             <parameter name="gameBoard" type="String" array="True"/>
         </parameters>
         <body>
-            <open expression="&quot;Display.md&quot;" mode="write"/>
             <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="border" type="String" array="False" size=""/>
+            <assign variable="border" expression="&quot;+&quot;"/>
+            <for variable="i" start="0" end="boardDimensions[1]" direction="inc" step="1">
+                <assign variable="border" expression="border &amp; &quot;-&quot;"/>
+            </for>
+            <assign variable="border" expression="border &amp; &quot;+&quot;"/>
+            <comment text="horizontal border"/>
+            <open expression="&quot;Display.md&quot;" mode="write"/>
+            <write expression="border"/>
             <for variable="i" start="0" end="boardDimensions[0]-1" direction="inc" step="1">
                 <write expression="gameBoard[i]"/>
             </for>
+            <write expression="border"/>
             <close/>
         </body>
     </function>
