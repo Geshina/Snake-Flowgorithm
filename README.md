@@ -10,9 +10,10 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] line by line rendering
  - [x] board aspect ratio 12/24
  - [x] snake rendering
- - [ ] paramterized
- - [ ] optimisation ?
+ - [x] paramterized
  - [ ] borders and UI
+ - [ ] more utility functions
+ - [ ] optimisation ?
 ## Entities
 spawn apples at random cordinates and gamesteps.
  - [x] function that returns int array with cordinates for apple
