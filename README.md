@@ -13,6 +13,7 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] paramterized
  - [x] more utility functions
  - [x] borders and UI
+ - [x] timestep + movement
  - [ ] optimisation ?
 ## Entities
 spawn apples at random cordinates and gamesteps.
