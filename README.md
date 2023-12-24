@@ -11,8 +11,8 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] board aspect ratio 12/24
  - [x] snake rendering
  - [x] paramterized
+ - [x] more utility functions
  - [ ] borders and UI
- - [ ] more utility functions
  - [ ] optimisation ?
 ## Entities
 spawn apples at random cordinates and gamesteps.

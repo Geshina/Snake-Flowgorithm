@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-24 12:54:40 PM"/>
+        <attribute name="saved" value="2023-12-24 01:24:44 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI0OzEyOjU0OjQwIFBNOzE3NjsyODM3"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI0OzAxOjI0OjQ0IFBNOzE3OTsyODM5"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -14,8 +14,22 @@
             <declare name="boardDimensions" type="Integer" array="True" size="2"/>
             <assign variable="boardDimensions[0]" expression="12"/>
             <assign variable="boardDimensions[1]" expression="24"/>
-            <comment text=""/>
             <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
+            <comment text=""/>
+            <declare name="arr" type="Integer" array="True" size="2"/>
+            <assign variable="arr[0]" expression="2"/>
+            <assign variable="arr[1]" expression="0"/>
+            <call expression="emptyBoard(gameBoard,boardDimensions)"/>
+            <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
+            <call expression="render(boardDimensions,gameBoard)"/>
+        </body>
+    </function>
+    <function name="emptyBoard" type="None" variable="">
+        <parameters>
+            <parameter name="gameBoard" type="String" array="True"/>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
+        </parameters>
+        <body>
             <declare name="temp" type="String" array="False" size=""/>
             <declare name="i, n" type="Integer" array="False" size=""/>
             <for variable="i" start="0" end="boardDimensions[0]-1" direction="inc" step="1">
@@ -25,11 +39,6 @@
                 </for>
                 <assign variable="gameBoard[i]" expression="temp"/>
             </for>
-            <declare name="arr" type="Integer" array="True" size="2"/>
-            <assign variable="arr[0]" expression="2"/>
-            <assign variable="arr[1]" expression="0"/>
-            <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
-            <call expression="render(boardDimensions,gameBoard)"/>
         </body>
     </function>
     <function name="insert" type="None" variable="">
