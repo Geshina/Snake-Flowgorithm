@@ -25,8 +25,10 @@ spawn apples at random cordinates and gamesteps.
 continously accept user input and provides the direction for the snake to go in
  - [ ] function that returns int array with vectors for movement | ex. direction(0,-1) for going down
 ## Game stack
+this is the sequence of events that happen inside the main game loop
  - [ ] Control Input
  - [ ] Snake Move
  - [ ] Spawn Apple
- - [ ] timestep ?
- - [ ] game engine (render & logic)
+ - [ ] check conditions
+ - [x] render
+ - [x] timestep
