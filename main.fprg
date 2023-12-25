@@ -4,30 +4,35 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-25 11:57:27 PM"/>
+        <attribute name="saved" value="2023-12-26 12:19:42 AM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI1OzExOjU3OjI3IFBNOzI1ODsyODQ2"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzEyOjE5OjQyIEFNOzI3NjsyODI4"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="board dimension"/>
             <declare name="boardDimensions" type="Integer" array="True" size="2"/>
-            <assign variable="boardDimensions[0]" expression="12"/>
-            <assign variable="boardDimensions[1]" expression="24"/>
+            <assign variable="boardDimensions[0]" expression="32"/>
+            <assign variable="boardDimensions[1]" expression="64"/>
             <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
+            <comment text="snake start"/>
+            <declare name="snake" type="Integer" array="True" size="2"/>
+            <assign variable="snake[0]" expression="4"/>
+            <assign variable="snake[1]" expression="1"/>
             <comment text="control init"/>
             <declare name="control" type="Integer" array="True" size="2"/>
+            <comment text="game step"/>
+            <declare name="gameStep" type="Integer" array="False" size=""/>
+            <assign variable="gameStep" expression="0"/>
             <comment text="timestep"/>
             <declare name="i, n, timestep" type="Integer" array="False" size=""/>
-            <assign variable="timestep" expression="10000"/>
-            <for variable="i" start="0" end="24000" direction="inc" step="1">
-                <declare name="arr" type="Integer" array="True" size="2"/>
-                <assign variable="arr[0]" expression="i"/>
-                <assign variable="arr[1]" expression="0"/>
+            <assign variable="timestep" expression="20000"/>
+            <for variable="gameStep" start="0" end="24000" direction="inc" step="1">
                 <call expression="getControl(control)"/>
+                <call expression="snakeMove(snake,control)"/>
                 <call expression="emptyBoard(gameBoard,boardDimensions)"/>
-                <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
+                <call expression="insert(&quot;0&quot;,snake,gameBoard,boardDimensions)"/>
                 <call expression="render(boardDimensions,gameBoard)"/>
                 <for variable="n" start="0" end="timestep" direction="inc" step="1"/>
             </for>
@@ -92,7 +97,6 @@
                     </if>
                 </else>
             </if>
-            <output expression="control[0] &amp; control[1]" newline="True"/>
         </body>
     </function>
     <function name="initControl" type="None" variable="">
@@ -146,6 +150,16 @@
             </for>
             <write expression="border"/>
             <close/>
+        </body>
+    </function>
+    <function name="snakeMove" type="None" variable="">
+        <parameters>
+            <parameter name="snake" type="Integer" array="True"/>
+            <parameter name="control" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="snake[0]" expression="snake[0] + control[0]*2"/>
+            <assign variable="snake[1]" expression="snake[1] + control[1]"/>
         </body>
     </function>
 </flowgorithm>
