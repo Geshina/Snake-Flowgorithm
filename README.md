@@ -16,7 +16,7 @@ process the control input into change of cordinates for snake
 ## Entities < Valentino
 spawn apples at random cordinates and gamesteps.
  - [x] function that returns int array with cordinates for apple
- - [ ] generate apples on every 8th step
+ - [x] generate apples on every 8th step
  - [x] check if snake cordinates == apples cordinates
  - [x] keep track of score
 ## Check Conditions
