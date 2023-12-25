@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="3.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Leo"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2023-12-25 10:09:50 PM"/>
+        <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI1OzEwOjA5OjUwIFBNOzIzMzsyODMx"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="board dimension"/>
+            <declare name="boardDimensions" type="Integer" array="True" size="2"/>
+            <assign variable="boardDimensions[0]" expression="12"/>
+            <assign variable="boardDimensions[1]" expression="24"/>
+            <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
+            <comment text="timestep"/>
+            <declare name="i, n, timestep" type="Integer" array="False" size=""/>
+            <assign variable="timestep" expression="10000"/>
+            <comment text="control init"/>
+            <declare name="control" type="Integer" array="True" size="2"/>
+            <call expression="initControl(control)"/>
+            <for variable="i" start="0" end="24" direction="inc" step="1">
+                <declare name="arr" type="Integer" array="True" size="2"/>
+                <assign variable="arr[0]" expression="i"/>
+                <assign variable="arr[1]" expression="0"/>
+                <call expression="getControl"/>
+                <call expression="emptyBoard(gameBoard,boardDimensions)"/>
+                <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
+                <call expression="render(boardDimensions,gameBoard)"/>
+                <for variable="n" start="0" end="timestep" direction="inc" step="1"/>
+            </for>
+        </body>
+    </function>
+    <function name="emptyBoard" type="None" variable="">
+        <parameters>
+            <parameter name="gameBoard" type="String" array="True"/>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="temp" type="String" array="False" size=""/>
+            <declare name="i, n" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="boardDimensions[0]-1" direction="inc" step="1">
+                <assign variable="temp" expression="&quot;|&quot;"/>
+                <for variable="n" start="0" end="boardDimensions[1]" direction="inc" step="1">
+                    <assign variable="temp" expression="temp &amp; &quot; &quot;"/>
+                </for>
+                <assign variable="temp" expression="temp &amp; &quot;|&quot;"/>
+                <assign variable="gameBoard[i]" expression="temp"/>
+            </for>
+        </body>
+    </function>
+    <function name="getControl" type="None" variable="">
+        <parameters/>
+        <body>
+            <comment text="init control"/>
+            <comment text="get control"/>
+            <declare name="controlString, controlChar" type="String" array="False" size=""/>
+            <open expression="&quot;control.txt&quot;" mode="read"/>
+            <read variable="controlString"/>
+            <assign variable="controlChar" expression="Char(controlString,Len(controlString)-1)"/>
+            <output expression="controlChar" newline="True"/>
+            <close/>
+        </body>
+    </function>
+    <function name="initControl" type="None" variable="">
+        <parameters>
+            <parameter name="control" type="Integer" array="True"/>
+        </parameters>
+        <body/>
+    </function>
+    <function name="insert" type="None" variable="">
+        <parameters>
+            <parameter name="character" type="String" array="False"/>
+            <parameter name="cordinates" type="Integer" array="True"/>
+            <parameter name="gameBoard" type="String" array="True"/>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <declare name="temp" type="String" array="False" size=""/>
+            <assign variable="temp" expression="&quot;&quot;"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="boardDimensions[1]+2" direction="inc" step="1">
+                <if expression="i == cordinates[0]">
+                    <then>
+                        <assign variable="temp" expression="temp &amp; character"/>
+                    </then>
+                    <else>
+                        <assign variable="temp" expression="temp &amp; Char(gameBoard[cordinates[1]],i)"/>
+                    </else>
+                </if>
+            </for>
+            <assign variable="gameBoard[cordinates[1]]" expression="temp"/>
+        </body>
+    </function>
+    <function name="render" type="None" variable="">
+        <parameters>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
+            <parameter name="gameBoard" type="String" array="True"/>
+        </parameters>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <declare name="border" type="String" array="False" size=""/>
+            <assign variable="border" expression="&quot;+&quot;"/>
+            <for variable="i" start="0" end="boardDimensions[1]" direction="inc" step="1">
+                <assign variable="border" expression="border &amp; &quot;-&quot;"/>
+            </for>
+            <assign variable="border" expression="border &amp; &quot;+&quot;"/>
+            <comment text="horizontal border"/>
+            <open expression="&quot;Display.md&quot;" mode="write"/>
+            <write expression="border"/>
+            <for variable="i" start="0" end="boardDimensions[0]-1" direction="inc" step="1">
+                <write expression="gameBoard[i]"/>
+            </for>
+            <write expression="border"/>
+            <close/>
+        </body>
+    </function>
+</flowgorithm>
