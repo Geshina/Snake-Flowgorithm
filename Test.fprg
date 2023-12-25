@@ -4,37 +4,78 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-22 05:16:15 pm"/>
+        <attribute name="saved" value="2023-12-25 09:33:09 pm"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
         <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTIxOzEyOjAyOjI0IFBNOzY7MjcyNQ=="/>
-        <attribute name="edited" value="VmFsZW50aW5vO0RFU0tUT1AtOFNTRkVUMjsyMDIzLTEyLTIyOzA1OjE2OjE1IHBtOzExOzM1MTk="/>
+        <attribute name="edited" value="VXNlcjtERVNLVE9QLTg5M0I0TFM7MjAyMy0xMi0yNTswOToyOTowMSDQv9C+0L/Quy47MTs3MDYx"/>
+        <attribute name="edited" value="VmFsZW50aW5vO0RFU0tUT1AtOFNTRkVUMjsyMDIzLTEyLTI1OzA5OjMzOjA5IHBtOzEyOzM1Mjk="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
-            <declare name="randPosition, snakeHeadPosition" type="Integer" array="True" size="2"/>
+            <declare name="randPosition, snakeHeadPosition, applePosition" type="Integer" array="True" size="2"/>
             <declare name="randHeight" type="Integer" array="False" size=""/>
             <assign variable="randHeight" expression="11"/>
             <declare name="randWidth" type="Integer" array="False" size=""/>
             <assign variable="randWidth" expression="22"/>
             <declare name="Score" type="Integer" array="False" size=""/>
             <assign variable="Score" expression="0"/>
-            <call expression="randomCordArray(randPosition,randHeight,randWidth)"/>
+            <declare name="steps" type="Integer" array="False" size=""/>
+            <assign variable="steps" expression="0"/>
+            <declare name="AppleHasSpawned" type="Boolean" array="False" size=""/>
+            <assign variable="AppleHasSpawned" expression="false"/>
+            <call expression="randomCordArray(applePosition,randHeight,randWidth)"/>
+            <assign variable="snakeHeadPosition[0]" expression="0"/>
+            <assign variable="snakeHeadPosition[1]" expression="0"/>
             <while expression="Score &lt; 10">
-                <output expression="randPosition[0] &amp; &quot; &quot; &amp; randPosition[1]" newline="True"/>
+                <if expression="AppleSpawn(steps,AppleHasSpawned)">
+                    <then>
+                        <do expression="snakeHeadPosition[0] == applePosition[0] &amp;&amp; snakeHeadPosition[1] == applePosition[1]">
+                            <call expression="randomCordArray(applePosition,randHeight,randWidth)"/>
+                        </do>
+                        <assign variable="AppleHasSpawned" expression="true"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="applePosition[0] == 0 &amp;&amp; applePosition[1] == 0">
+                    <then/>
+                    <else>
+                        <output expression="&quot;Apple is at: &quot; &amp; applePosition[0] &amp; &quot; &quot; &amp;applePosition[1]" newline="True"/>
+                    </else>
+                </if>
                 <output expression="&quot;Enter snake x position &quot;" newline="True"/>
                 <input variable="snakeHeadPosition[0]"/>
                 <output expression="&quot;Enter snake y position &quot;" newline="True"/>
                 <input variable="snakeHeadPosition[1]"/>
-                <if expression="isSamePosition(randPosition,snakeHeadPosition)">
+                <assign variable="steps" expression="steps+1"/>
+                <if expression="isSamePosition(applePosition,snakeHeadPosition)">
                     <then>
-                        <call expression="randomCordArray(randPosition,randHeight,randWidth)"/>
                         <assign variable="Score" expression="Score+1"/>
+                        <assign variable="AppleHasSpawned" expression="false"/>
+                        <comment text="reset of apple"/>
+                        <assign variable="applePosition[0]" expression="0"/>
+                        <assign variable="applePosition[1]" expression="0"/>
                     </then>
                     <else/>
                 </if>
                 <output expression="&quot;Score &quot; &amp; Score" newline="True"/>
             </while>
+        </body>
+    </function>
+    <function name="AppleSpawn" type="Boolean" variable="AppleHasSpawned">
+        <parameters>
+            <parameter name="steps" type="Integer" array="False"/>
+            <parameter name="AppleHasSpawned" type="Boolean" array="False"/>
+        </parameters>
+        <body>
+            <if expression="steps % 8 == 0 and AppleHasSpawned == false">
+                <then>
+                    <assign variable="AppleHasSpawned" expression="true"/>
+                </then>
+                <else>
+                    <assign variable="AppleHasSpawned" expression="false"/>
+                </else>
+            </if>
         </body>
     </function>
     <function name="isSamePosition" type="Boolean" variable="positionIsEqual">
