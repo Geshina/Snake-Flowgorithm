@@ -6,8 +6,10 @@ The classic snake game made in flowgorithm. Eat apples to get longer (max size =
 - Leon - Controls / Leaderboard
 
 ## Controls < Leon
-continously accept user input and provides the direction for the snake to go in
- - [ ] function that returns int array with vectors for movement | ex. direction(0,-1) for going down
+continously accept user input and provides the direction for the snake to go in.
+uses the control file to check for user innput
+ - [ ] method for taking continious control
+ - [ ] loop
 ## Snake Move 
 process the control input into change of cordinates for snake
  - [ ]
@@ -30,6 +32,10 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] borders and UI
  - [x] timestep + movement
  - [ ] optimisation ?
+## Initialization
+ - [ ] set board size
+ - [ ] set difficulty
+ - [ ] use wasd to move | init control
 ## Game stack
 this is the sequence of events that happen inside the main game loop
  - [ ] Control Input
