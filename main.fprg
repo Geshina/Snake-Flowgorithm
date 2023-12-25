@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-25 10:09:50 PM"/>
+        <attribute name="saved" value="2023-12-25 11:57:27 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI1OzEwOjA5OjUwIFBNOzIzMzsyODMx"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI1OzExOjU3OjI3IFBNOzI1ODsyODQ2"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -16,17 +16,16 @@
             <assign variable="boardDimensions[0]" expression="12"/>
             <assign variable="boardDimensions[1]" expression="24"/>
             <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
+            <comment text="control init"/>
+            <declare name="control" type="Integer" array="True" size="2"/>
             <comment text="timestep"/>
             <declare name="i, n, timestep" type="Integer" array="False" size=""/>
             <assign variable="timestep" expression="10000"/>
-            <comment text="control init"/>
-            <declare name="control" type="Integer" array="True" size="2"/>
-            <call expression="initControl(control)"/>
-            <for variable="i" start="0" end="24" direction="inc" step="1">
+            <for variable="i" start="0" end="24000" direction="inc" step="1">
                 <declare name="arr" type="Integer" array="True" size="2"/>
                 <assign variable="arr[0]" expression="i"/>
                 <assign variable="arr[1]" expression="0"/>
-                <call expression="getControl"/>
+                <call expression="getControl(control)"/>
                 <call expression="emptyBoard(gameBoard,boardDimensions)"/>
                 <call expression="insert(&quot;0&quot;,arr,gameBoard,boardDimensions)"/>
                 <call expression="render(boardDimensions,gameBoard)"/>
@@ -53,16 +52,47 @@
         </body>
     </function>
     <function name="getControl" type="None" variable="">
-        <parameters/>
+        <parameters>
+            <parameter name="control" type="Integer" array="True"/>
+        </parameters>
         <body>
-            <comment text="init control"/>
-            <comment text="get control"/>
-            <declare name="controlString, controlChar" type="String" array="False" size=""/>
             <open expression="&quot;control.txt&quot;" mode="read"/>
+            <declare name="controlString, controlChar" type="String" array="False" size=""/>
             <read variable="controlString"/>
             <assign variable="controlChar" expression="Char(controlString,Len(controlString)-1)"/>
-            <output expression="controlChar" newline="True"/>
             <close/>
+            <if expression="controlChar == &quot;w&quot;">
+                <then>
+                    <assign variable="control[0]" expression="0"/>
+                    <assign variable="control[1]" expression="-1"/>
+                </then>
+                <else>
+                    <if expression="controlChar == &quot;a&quot;">
+                        <then>
+                            <assign variable="control[0]" expression="-1"/>
+                            <assign variable="control[1]" expression="0"/>
+                        </then>
+                        <else>
+                            <if expression="controlChar == &quot;s&quot;">
+                                <then>
+                                    <assign variable="control[0]" expression="0"/>
+                                    <assign variable="control[1]" expression="1"/>
+                                </then>
+                                <else>
+                                    <if expression="controlChar == &quot;d&quot;">
+                                        <then>
+                                            <assign variable="control[0]" expression="1"/>
+                                            <assign variable="control[1]" expression="0"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+            <output expression="control[0] &amp; control[1]" newline="True"/>
         </body>
     </function>
     <function name="initControl" type="None" variable="">

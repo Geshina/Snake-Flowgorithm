@@ -33,12 +33,12 @@ a set of functions that print out the full game board. The board is stored as a 
  - [x] timestep + movement
  - [ ] optimisation ?
 ## Initialization
- - [ ] set board size
+ <!-- - [ ] set board size
  - [ ] set difficulty
- - [ ] use wasd to move | init control
+ - [ ] use wasd to move | init control -->
 ## Game stack
 this is the sequence of events that happen inside the main game loop
- - [ ] Control Input
+ - [x] Control Input
  - [ ] Snake Move
  - [ ] Spawn Apple
  - [ ] check conditions
