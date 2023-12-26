@@ -40,7 +40,7 @@ a set of functions that print out the full game board. The board is stored as a 
 this is the sequence of events that happen inside the main game loop
  - [x] Control Input
  - [x] Snake Move
- - [ ] Spawn Apple <
- - [ ] check conditions
+ - [x] Spawn Apple
+ - [ ] check conditions<
  - [x] render
  - [x] timestep

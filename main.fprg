@@ -4,17 +4,17 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-26 01:31:10 AM"/>
+        <attribute name="saved" value="2023-12-26 01:54:47 AM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzAxOjMxOjEwIEFNOzI4MzsyODEz"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzAxOjU0OjQ3IEFNOzI5NjsyODMy"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
         <body>
             <comment text="board dimension"/>
             <declare name="boardDimensions" type="Integer" array="True" size="2"/>
-            <assign variable="boardDimensions[0]" expression="32"/>
-            <assign variable="boardDimensions[1]" expression="64"/>
+            <assign variable="boardDimensions[0]" expression="16"/>
+            <assign variable="boardDimensions[1]" expression="32"/>
             <declare name="gameBoard" type="String" array="True" size="boardDimensions[0]"/>
             <comment text="snake start"/>
             <declare name="snake" type="Integer" array="True" size="2"/>
@@ -29,14 +29,14 @@
             <assign variable="gameStep" expression="0"/>
             <comment text="timestep"/>
             <declare name="i, n, timestep" type="Integer" array="False" size=""/>
-            <assign variable="timestep" expression="20000"/>
+            <assign variable="timestep" expression="50000"/>
             <for variable="gameStep" start="0" end="24000" direction="inc" step="1">
                 <call expression="emptyBoard(gameBoard,boardDimensions)"/>
                 <call expression="getControl(control)"/>
                 <call expression="snakeMove(snake,control)"/>
                 <call expression="randomCords(apple,boardDimensions,gameStep)"/>
                 <call expression="insert(&quot;0&quot;,apple,gameBoard,boardDimensions)"/>
-                <call expression="insert(&quot;0&quot;,snake,gameBoard,boardDimensions)"/>
+                <call expression="insert(&quot;X&quot;,snake,gameBoard,boardDimensions)"/>
                 <call expression="render(boardDimensions,gameBoard)"/>
                 <for variable="n" start="0" end="timestep" direction="inc" step="1"/>
             </for>
