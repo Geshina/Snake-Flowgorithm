@@ -41,6 +41,7 @@ this is the sequence of events that happen inside the main game loop
  - [x] Control Input
  - [x] Snake Move
  - [x] Spawn Apple
- - [ ] check conditions<
+ - [ ] buffer ? <
+ - [ ] check conditions 
  - [x] render
  - [x] timestep
