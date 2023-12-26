@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-26 06:56:37 PM"/>
+        <attribute name="saved" value="2023-12-26 09:22:53 PM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzA2OjU2OjM3IFBNOzMwMDsyODM5"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzA5OjIyOjUzIFBNOzMyMTsyODM2"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -27,16 +27,18 @@
             <comment text="game step"/>
             <declare name="gameStep" type="Integer" array="False" size=""/>
             <assign variable="gameStep" expression="0"/>
+            <comment text="size"/>
+            <declare name="snakeSize" type="Integer" array="False" size=""/>
+            <assign variable="snakeSize" expression="1"/>
             <comment text="timestep"/>
             <declare name="i, n, timestep" type="Integer" array="False" size=""/>
             <assign variable="timestep" expression="50000"/>
             <for variable="gameStep" start="0" end="24000" direction="inc" step="1">
                 <call expression="emptyBoard(gameBoard,boardDimensions)"/>
                 <call expression="getControl(control)"/>
-                <call expression="snakeMove(snake,control)"/>
+                <call expression="snakeMove(snake,control,snakeSize,gameBoard,boardDimensions)"/>
                 <call expression="randomCords(apple,boardDimensions,gameStep)"/>
                 <call expression="insert(&quot;0&quot;,apple,gameBoard,boardDimensions)"/>
-                <call expression="insert(&quot;X&quot;,snake,gameBoard,boardDimensions)"/>
                 <call expression="render(boardDimensions,gameBoard)"/>
                 <for variable="n" start="0" end="timestep" direction="inc" step="1"/>
             </for>
@@ -144,7 +146,6 @@
                 <then>
                     <assign variable="apple[0]" expression="random(boardDimensions[1])"/>
                     <assign variable="apple[1]" expression="random(boardDimensions[0])"/>
-                    <output expression="apple[0] &amp; apple[1]" newline="True"/>
                 </then>
                 <else/>
             </if>
@@ -177,10 +178,32 @@
         <parameters>
             <parameter name="snake" type="Integer" array="True"/>
             <parameter name="control" type="Integer" array="True"/>
+            <parameter name="snakeSize" type="Integer" array="False"/>
+            <parameter name="gameBoard" type="String" array="True"/>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
         </parameters>
         <body>
+            <declare name="positionBuffer" type="Integer" array="True" size="16"/>
             <assign variable="snake[0]" expression="snake[0] + control[0]*2"/>
             <assign variable="snake[1]" expression="snake[1] + control[1]"/>
+            <declare name="i, n" type="Integer" array="False" size=""/>
+            <if expression="snakeSize &gt;= 2">
+                <then>
+                    <for variable="i" start="0" end="snakeSize*2 -1 " direction="inc" step="1">
+                        <assign variable="positionBuffer[i]" expression="positionBuffer[i+2]"/>
+                    </for>
+                </then>
+                <else/>
+            </if>
+            <for variable="i" start="0" end="snakeSize*2 -1 " direction="inc" step="1">
+                <assign variable="positionBuffer[i]" expression="snake[i]"/>
+            </for>
+            <for variable="i" start="0" end="snakeSize-1" direction="inc" step="2">
+                <declare name="tempArr" type="Integer" array="True" size="2"/>
+                <assign variable="tempArr[i]" expression="positionBuffer[i]"/>
+                <assign variable="tempArr[i+1]" expression="positionBuffer[i+1]"/>
+                <call expression="insert(&quot;X&quot;,tempArr,gameBoard,boardDimensions)"/>
+            </for>
         </body>
     </function>
 </flowgorithm>
