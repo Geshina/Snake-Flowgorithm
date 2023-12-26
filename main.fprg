@@ -4,9 +4,9 @@
         <attribute name="name" value=""/>
         <attribute name="authors" value="Leo"/>
         <attribute name="about" value=""/>
-        <attribute name="saved" value="2023-12-26 12:19:42 AM"/>
+        <attribute name="saved" value="2023-12-26 01:31:10 AM"/>
         <attribute name="created" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTA0OzA0OjU1OjU2IFBNOzI2Mjc="/>
-        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzEyOjE5OjQyIEFNOzI3NjsyODI4"/>
+        <attribute name="edited" value="TGVvO0RFU0tUT1AtSUZQTTJJMjsyMDIzLTEyLTI2OzAxOjMxOjEwIEFNOzI4MzsyODEz"/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -20,6 +20,8 @@
             <declare name="snake" type="Integer" array="True" size="2"/>
             <assign variable="snake[0]" expression="4"/>
             <assign variable="snake[1]" expression="1"/>
+            <comment text="apple"/>
+            <declare name="apple" type="Integer" array="True" size="2"/>
             <comment text="control init"/>
             <declare name="control" type="Integer" array="True" size="2"/>
             <comment text="game step"/>
@@ -29,9 +31,11 @@
             <declare name="i, n, timestep" type="Integer" array="False" size=""/>
             <assign variable="timestep" expression="20000"/>
             <for variable="gameStep" start="0" end="24000" direction="inc" step="1">
+                <call expression="emptyBoard(gameBoard,boardDimensions)"/>
                 <call expression="getControl(control)"/>
                 <call expression="snakeMove(snake,control)"/>
-                <call expression="emptyBoard(gameBoard,boardDimensions)"/>
+                <call expression="randomCords(apple,boardDimensions,gameStep)"/>
+                <call expression="insert(&quot;0&quot;,apple,gameBoard,boardDimensions)"/>
                 <call expression="insert(&quot;0&quot;,snake,gameBoard,boardDimensions)"/>
                 <call expression="render(boardDimensions,gameBoard)"/>
                 <for variable="n" start="0" end="timestep" direction="inc" step="1"/>
@@ -127,6 +131,23 @@
                 </if>
             </for>
             <assign variable="gameBoard[cordinates[1]]" expression="temp"/>
+        </body>
+    </function>
+    <function name="randomCords" type="None" variable="">
+        <parameters>
+            <parameter name="apple" type="Integer" array="True"/>
+            <parameter name="boardDimensions" type="Integer" array="True"/>
+            <parameter name="gameStep" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <if expression="gameStep % 32 == 0">
+                <then>
+                    <assign variable="apple[0]" expression="random(boardDimensions[1])"/>
+                    <assign variable="apple[1]" expression="random(boardDimensions[0])"/>
+                    <output expression="apple[0] &amp; apple[1]" newline="True"/>
+                </then>
+                <else/>
+            </if>
         </body>
     </function>
     <function name="render" type="None" variable="">
