@@ -42,6 +42,7 @@ this is the sequence of events that happen inside the main game loop
  - [x] Snake Move
  - [x] Spawn Apple
  - [x] buffer
- - [ ] check conditions <
+ - [ ] check conditions < check snake
  - [x] render
  - [x] timestep
+ - [ ] leaderboard
